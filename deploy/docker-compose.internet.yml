@@ -1,0 +1,10 @@
+# Despliegue modo INTERNET: mismo código, solo cambia la configuración.
+# Uso:
+#   cp env/.env.internet env/.env
+#   docker compose -f docker-compose.yml -f docker-compose.internet.yml up -d --build
+#
+# En producción real los certificados en ./certs serían de Let's Encrypt.
+services:
+  nginx:
+    environment:
+      DOMAIN: ${DOMAIN:-app.ejemplo.com}

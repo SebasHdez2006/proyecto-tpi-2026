@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Node
+node_modules/
+frontend/dist/
+
+# Env / secrets — .env activo es local; las plantillas por entorno SÍ se versionan
+.env
+*.pem
+deploy/certs/*.crt
+deploy/certs/*.key
+
+# Docker data
+pgdata/
+
+# SO / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Test artifacts
+tests/load/results/

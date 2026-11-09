@@ -1,0 +1,27 @@
+# Despliegue modo INTRANET: mismo código, solo cambia la configuración.
+# Uso:
+#   cp env/.env.intranet env/.env
+#   docker compose -f docker-compose.yml -f docker-compose.intranet.yml up -d --build
+#
+# IdP propio (Keycloak) disponible con el perfil "idp":
+#   docker compose -f docker-compose.yml -f docker-compose.intranet.yml --profile idp up -d
+services:
+  nginx:
+    environment:
+      DOMAIN: ${DOMAIN:-app.intranet.local}
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0.7
+    profiles: ["idp"]
+    command: start-dev
+    environment:
+      KC_HOSTNAME: ${KC_HOSTNAME:-keycloak.intranet.local}
+      KC_HOSTNAME_STRICT: "false"
+      KC_HTTP_ENABLED: "true"
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KC_ADMIN:-admin}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KC_ADMIN_PASSWORD:-admin}
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+    restart: unless-stopped
