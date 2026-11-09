@@ -1,6 +1,7 @@
 # Etapa 5 — Implementación y manual de instalación
 
 > Plantilla — completar para la puesta en producción y la defensa.
+> Convenciones y simbología: `../convenciones.md`
 
 ## 1. Requisitos previos
 - Docker + Compose, DNS del dominio, certificados.

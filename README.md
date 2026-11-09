@@ -75,5 +75,6 @@ tests/load/ k6 — distribución del balanceo
 ## Documentos
 
 - Guía: `2026_Guía del proyecto_ desarrollo de una aplicación web.md`
+- Convenciones: `docs/convenciones.md` — normas y simbología de toda la documentación
 - Fase 0: `docs/fase0/` — selección tecnológica, herramientas, arquitectura
 - Etapas 1–5: `docs/etapas/` — plantillas listas para el problema asignado

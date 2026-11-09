@@ -1,6 +1,7 @@
 # Etapa 4 — Desarrollo y reporte de pruebas
 
 > Plantilla — completar durante la implementación.
+> Convenciones y simbología: `../convenciones.md`
 
 ## 1. Cobertura implementada
 - Funcionalidades entregadas vs. requisitos (trazabilidad RF-xx ↔ commits).

@@ -8,7 +8,7 @@ El proyecto recorre el ciclo completo de desarrollo de una aplicación web, desd
 
 | Paso | Qué se hace | Cuándo ocurre |
 | :---- | :---- | :---- |
-| **Fase 0** | Selección de tecnologías y herramientas | Antes de conocer el problema. No cuenta como etapa |
+| **Fase 0** | Selección de tecnologías y herramientas | Antes de conocer el problema. No cuenta como etapa. |
 | **Asignación** | El docente entrega el problema: enunciado y para que el grupo identifique/defina requerimientos del sistema(etapa 1\) | Después de la Fase 0 |
 | **Etapa 1** | Definición de requisitos | Basada en el problema asignado |
 | **Etapa 2** | Análisis |  |
@@ -26,27 +26,26 @@ Estas condiciones aplican a todos los equipos y deben tenerse presentes desde la
 | **Proyectos relacionados entre sí** | Cada sistema expone APIs RESTful y consume las de otros equipos. **Ejemplo**: *Ventas descarga inventario consultando a Inventario, y Contabilidad, genera asientos a partir de las facturas de Ventas.* |
 | **APIs programadas por el equipo** | **No se permite usar herramientas que generen las APIs** (json-server, APIs autogeneradas por la base de datos, Supabase, Firebase, PostgREST, Hasura y similares). Los endpoints se programan en el backend. |
 | **Configurable por entorno** | El mismo código debe funcionar instalado en internet o en una intranet de red privada, cambiando solo la **configuración**: CDN, proveedor de identidad y servidor de base de datos. |
-| **PWA instalable en celular** | La aplicación se instala en un smartphone/desktop y usa Service Worker y capacidades offline. |
-| **Balanceo de carga** | Un servidor frontal y tres servidores de aplicación en clúster, con gestión centralizada de sesiones para que cualquier servidor atienda a cualquier usuario. BASE DE DATOS CENTRALIZADA. opcionalmente distribuida. |
+| **PWA instalable en celular** | La aplicación se instala en un smartphone/desktop y usa Service Worker y capacidades offline. API Cache,  API Service Worker |
+| **Balanceo de carga** | Un servidor frontal y tres servidores de aplicación en clúster, con gestión centralizada de sesiones para que cualquier servidor atienda a cualquier usuario. BASE DE DATOS CENTRALIZADA. descartado que sea distribuida. |
 | **Backend libre** | Cada equipo elige lenguaje, framework y tecnologías relacionadas, siempre que cumplan todo lo anterior. |
-
-## 
 
 ## **Fase 0: Selección de tecnologías y herramientas**
 
 Esta fase se realiza antes de conocer el problema, por lo que la selección es independiente del proyecto asignado. Lo que se evalúa es que la pila tecnológica elegida pueda cumplir todas las restricciones obligatorias.
 
-| Principio rector: un solo código, dos despliegues. Todo lo que cambia entre internet e intranet debe estar en archivos o variables de configuración, nunca en el código fuente. Un componente que exija un servicio externo para funcionar queda descartado, salvo que tenga un reemplazo(o justificación) que se pueda instalar en la intranet. |
+| Principio rector: un solo código, dos despliegues. Todo lo que cambia entre internet e intranet debe estar en archivos o variables de configuración, nunca en el código fuente. Un componente que exija un servicio externo para funcionar queda descartado, salvo que tenga un reemplazo(o justificación de accederlo desde interneta hacia intranet) que se pueda instalar en la intranet. |
 | :---- |
 
-### **Herramientas de desarrollo**
+### **Herramientas de desarrollo(pueden ser)**
 
 > * Editor o IDE (Visual Studio Code, IntelliJ IDEA, Eclipse u otro)  
-> * Control de versiones con Git y un repositorio (GitHub en internet, Gitea o GitLab autohospedado en intranet)  
+> * Control de versiones con Git y un repositorio (GitHub en internet, ~~Gitea o GitLab autohospedado en intranet~~)  
 > * Cliente de pruebas de API (Postman, Insomnia, Bruno, curl)  
+> * Herramientas de Diseño de Arquitectura de Información(balsamiq , figma).  
 > * Herramientas de modelado UML y diseño de interfaces (draw.io, StarUML, PlantUML, Figma u otras)  
 > * Gestor de dependencias y construcción del proyecto (Maven, Gradle, npm, pip, Composer u otro)  
-> * Contenedores (Docker y Docker Compose) para reproducir el clúster en una sola máquina  
+> * Contenedores (Docker y Docker Compose) para reproducir el clúster en una sola máquina.  
 > * Herramienta de pruebas de carga (JMeter, k6) para demostrar el balanceo
 
 ### 
@@ -71,7 +70,7 @@ Esta fase se realiza antes de conocer el problema, por lo que la selección es i
 | :---: | :---: | :---: |
 | **Servidor frontal** Nginx, HAProxy o similar. Balanceo de carga, TLS y verificación de salud |  |  |
 | **Nodo 1** Servidor de aplicación | **Nodo 2** Servidor de aplicación | **Nodo 3** Servidor de aplicación |
-| **Almacén de sesiones(**Redis u otro) **/ Sin ALMACÉN(JWT)**  |  | **Base de datos** Servidor propio |
+| **Almacén de sesiones(**Redis u otro) **ó Sin ALMACÉN(JWT)**  |  | **Base de datos** Servidor propio |
 
 Redis y la base de datos son puntos únicos de fallo. Para el alcance del proyecto basta con documentar esta limitación. Como mejora opcional se puede agregar réplica o Sentinel.
 
@@ -82,10 +81,9 @@ Redis y la base de datos son puntos únicos de fallo. Para el alcance del proyec
 
 ### **Entregable de la Fase 0**
 
-> 1. Tabla con cada componente, la tecnología elegida, su justificación, su configuración en internet y su configuración en intranet  
-> 2. Lista de herramientas de desarrollo seleccionadas  
-> 3. Diagrama de arquitectura con servidor frontal, tres nodos, sesiones, base de datos e identidad  
-> 4. *Prueba de concepto mínima: una PWA de ejemplo instalable, detrás del servidor frontal con tres nodos, que muestre qué nodo respondió, con sesión compartida, y que cambie de entorno modificando solo la configuración*
+> 1. Tabla con cada componente, la tecnología elegida, su justificación, su configuración en internet y su configuración en intranet, incluidas herramientas de desarrollo seleccionadas  
+> 2. Diagrama de arquitectura con servidor frontal, tres nodos, sesiones(debe cumplir con que si un servidor cae, cualquier otro atiende al usuario), base de datos e identidad.  
+> 3. *Prueba de concepto mínima: una PWA de ejemplo instalable, detrás del servidor frontal con tres nodos, que muestre qué nodo respondió, con sesión compartida, y que cambie de entorno modificando solo la configuración.*
 
 ## 
 

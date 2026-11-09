@@ -1,6 +1,7 @@
 # Etapa 3 — Diseño
 
 > Plantilla — completar tras el análisis.
+> Convenciones y simbología: `../convenciones.md`
 
 ## 1. Arquitectura detallada
 - Ver `docs/fase0/arquitectura.md`; aquí se especializa al problema.

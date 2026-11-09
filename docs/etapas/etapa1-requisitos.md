@@ -1,6 +1,7 @@
 # Etapa 1 — Especificación de Requisitos (SRS)
 
 > Plantilla — completar cuando el docente asigne el problema.
+> Convenciones y simbología: `../convenciones.md`
 
 ## 1. Introducción
 - Propósito, alcance, definiciones y acrónimos.

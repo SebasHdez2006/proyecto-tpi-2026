@@ -1,6 +1,7 @@
 # Etapa 2 — Análisis
 
 > Plantilla — completar con base en el SRS aprobado.
+> Convenciones y simbología: `../convenciones.md`
 
 ## 1. Actores y casos de uso
 - Diagrama de casos de uso (draw.io/PlantUML).
